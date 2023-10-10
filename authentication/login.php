@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION["user"])) {
+  header("Location: /main/dashboard.php");
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -21,7 +30,7 @@
   <body>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 mx-auto h1">Point of Sale | v2.0</span>
+        <span class="navbar-brand mb-0 mx-auto h1">Point of Sale | v1.0</span>
       </div>
     </nav>
 
@@ -61,6 +70,12 @@
                 name="password"
               />
             </div>
+
+            <?php
+              if (isset($_GET["error"])) {
+                echo '<div style="text-align: center;" class="text-danger">Wrong username or password.</div>';
+              }
+            ?>
 
             <div class="input-group flex-nowrap pt-3">
               <button type="submit" class="btn btn-primary w-100" name="sub">Login</button>

@@ -1,0 +1,24 @@
+table,
+thead,
+tr,
+tbody,
+th,
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.button-cell {
+  text-align: right !important;
+}
