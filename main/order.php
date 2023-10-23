@@ -113,7 +113,6 @@
     <form action="../api/validate_search.php" method="GET">
       <label for="order_search">Search Order:</label>
         <input type="text" id="order_search" name="search_query" style="width: 300px;" required>
-      <!-- <input type="submit" name="osearch_submit"> -->
     </form>
 
     <p style="text-align: center" class="fs-3 my-4">All Orders</p>

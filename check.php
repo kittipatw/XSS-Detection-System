@@ -27,7 +27,7 @@
     }
 
 
-    $malicious = FALSE;
+    // $malicious = FALSE;
 
 	function preProcess($input){
 		// Remove spaces, tabs, and line breaks
@@ -61,7 +61,8 @@
     function CheckModel($input){
         return TRUE;
     }
-    function Block_and_Log($user_info, $input_str){
+    function WriteLog($input){
+        
         return TRUE;
     }
     function Send_Notification($admin, $user_info, $input_str){
