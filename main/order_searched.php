@@ -111,7 +111,10 @@
     </nav>
 
     <?php
+    include('../check.php');
     $o_id = $_GET['search_query'];
+    # $test = preProcess($o_id);
+    # echo "<script>console.log('".$o_id."');</script>";
 
     // XSS DETECTION HERE
     // XSS DETECTION HERE
