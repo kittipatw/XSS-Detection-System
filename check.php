@@ -35,7 +35,7 @@
 		// Convert to lowercase
     	$output = strtolower($output);
 		// Replace ' with "
-		$output = str_replace("'", '"', $input);
+		$output = str_replace("'", '"', $output);
 		return $output;
 	}
 
