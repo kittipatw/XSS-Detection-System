@@ -99,6 +99,9 @@
               </ul>
             </li>
             <li class="nav-item mx-2">
+              <a class="nav-link" href="/main/feedback.php">Feedback</a>
+            </li>
+            <li class="nav-item mx-2">
               <a class="nav-link" href="/authentication/logout.php">Logout</a>
             </li>
           </ul>
