@@ -131,9 +131,9 @@
     ?>
 
     <!-- Reflected XSS: validate HERE (/api/order_searched.php) -->
-    <form action="../api/order_searched.php" method="GET">
+    <form action="../api/validate_search.php" method="GET">
       <label for="order_search">Search Order:</label>
-        <input type="text" id="order_search" name="search_query" style="width: 300px;" required value=<?php echo $o_id ?>>
+        <input type="text" id="order_search" name="search_query" style="width: 300px;" required value="<?php echo $o_id; ?>">
     </form>
 
     <?php if($order_id == null) {
