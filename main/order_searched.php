@@ -114,7 +114,6 @@
     </nav>
 
     <?php
-    # GET ['search_query'] value after detection step
     $o_id = $_GET['search_query'];
     # $test = preProcess($o_id);
     # echo "<script>console.log('".$o_id."');</script>";
@@ -135,8 +134,9 @@
 
     <!-- Reflected XSS: validate HERE (/api/order_searched.php) -->
     <form action="../api/validate_search.php" method="GET">
-      <label for="order_search">Search Order:</label>
-        <input type="text" id="order_search" name="search_query" style="width: 300px;" required value="<?php echo $o_id; ?>">
+      <div style="width: 15%; right: 10%; position: absolute;" class="mt-4">
+        <input type="text" class="form-control" id="search" name="search_query" required value="<?php echo $o_id; ?>">
+      </div>
     </form>
 
     <?php if($order_id == null) {

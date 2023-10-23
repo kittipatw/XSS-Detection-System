@@ -114,9 +114,8 @@
     </nav>
 
     <form action="../api/validate_search.php" method="GET">
-
       <div style="width: 15%; right: 10%; position: absolute;" class="mt-4">
-        <input type="text" class="form-control" id="search" name="search_query" placeholder="Search Order"/>
+        <input type="text" class="form-control" id="search" name="search_query" placeholder="Search Order">
       </div>
 
     </form>
