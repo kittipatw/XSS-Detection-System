@@ -110,6 +110,12 @@
       </div>
     </nav>
 
+    <form action="./order_searched.php" method="GET">
+      <label for="order_search">Search Order:</label>
+        <input type="text" name="search_query" style="width: 300px;">
+      <!-- <input type="submit" name="osearch_submit"> -->
+    </form>
+
     <p style="text-align: center" class="fs-3 my-4">All Orders</p>
 
     <div
