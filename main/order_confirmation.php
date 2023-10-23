@@ -144,6 +144,7 @@ if (!isset($_GET['o_id'])) {
   $order_total = $row['order_total'];
 
   ?>
+  <h1><?php echo "test:" . $o_id; ?></h1>
 
   <div style="width: 50%" class="mx-auto mt-5 rounded">
     <svg class="checkmark mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
