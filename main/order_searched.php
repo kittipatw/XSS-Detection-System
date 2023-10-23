@@ -111,7 +111,7 @@
     </nav>
 
     <?php
-    include('../check.php');
+    # GET ['search_query'] value after detection step
     $o_id = $_GET['search_query'];
     # $test = preProcess($o_id);
     # echo "<script>console.log('".$o_id."');</script>";
@@ -125,23 +125,23 @@
     if(is_numeric($o_id)){
       $q = "SELECT o_id FROM `order` WHERE `o_id` = $o_id;";
       $result = $mysqli->query($q);
-  
       $row = $result->fetch_array();
-  
       $order_id = $row['o_id'];
     }
     ?>
 
-    <form action="./order_searched.php" method="GET">
+    <!-- Reflected XSS: validate HERE (/api/order_searched.php) -->
+    <form action="../api/order_searched.php" method="GET">
       <label for="order_search">Search Order:</label>
-        <input type="text" id="order_search" name="search_query" style="width: 300px;" value=<?php echo $o_id ?>>
+        <input type="text" id="order_search" name="search_query" style="width: 300px;" required value=<?php echo $o_id ?>>
     </form>
 
     <?php if($order_id == null) {
       echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Sorry, no results were found for: " . $o_id . "</p>";
     } 
     else{
-      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Found result for: " . $o_id . "</p>"; ?>
+      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Found result for: " . $o_id . "</p>"; 
+    ?>
 
       <div
       style="height: 70%; width: 80%; overflow: scroll;"

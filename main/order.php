@@ -110,9 +110,9 @@
       </div>
     </nav>
 
-    <form action="./order_searched.php" method="GET">
+    <form action="../api/validate_search.php" method="GET">
       <label for="order_search">Search Order:</label>
-        <input type="text" id="order_search" name="search_query" style="width: 300px;">
+        <input type="text" id="order_search" name="search_query" style="width: 300px;" required>
       <!-- <input type="submit" name="osearch_submit"> -->
     </form>
 
