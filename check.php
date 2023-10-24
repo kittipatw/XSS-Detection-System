@@ -1,5 +1,5 @@
 <?php
-$admin = '';
+session_start();
 
 // Check if the submitted request is GET or POST
 if ($_SERVER['REQUEST_METHOD'] == 'GET' || 'POST') {
