@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2022 at 04:32 PM
+-- Generation Time: Oct 24, 2023 at 01:56 PM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -40,14 +40,18 @@ CREATE TABLE `Detail_line` (
 
 INSERT INTO `Detail_line` (`d_id`, `d_quantity`, `p_id`, `o_id`) VALUES
 ('1', 1, 104, '3275482125'),
+('1', 2, 103, '3346352116'),
 ('1', 1, 105, '3666602697'),
+('1', 1, 112, '4023176440'),
 ('1', 1, 102, '4792278009'),
 ('1', 1, 203, '6363154731'),
 ('1', 1, 202, '7271765977'),
 ('1', 1, 101, '7336717011'),
 ('1', 1, 118, '8661536431'),
 ('2', 1, 204, '3275482125'),
+('2', 2, 110, '3346352116'),
 ('2', 1, 110, '3666602697'),
+('2', 1, 111, '4023176440'),
 ('2', 1, 108, '4792278009'),
 ('2', 1, 211, '6363154731'),
 ('2', 1, 201, '7271765977'),
@@ -88,7 +92,28 @@ CREATE TABLE `Employee` (
 INSERT INTO `Employee` (`e_id`, `e_fname`, `e_lname`, `e_role`, `e_username`, `e_password`) VALUES
 (111, 'Atikan', 'Mangkala', 'Admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
 (222, 'Kittipat', 'Wattanasuwan', 'Admin', 'admin2', '1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8'),
-(333, 'Elon', 'Musk', 'Cashier', 'user', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+(333, 'Elon2', 'Musk', 'Cashier', 'user0', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Feedback`
+--
+
+CREATE TABLE `Feedback` (
+  `e_id` bigint(6) DEFAULT NULL,
+  `e_fname` varchar(20) DEFAULT NULL,
+  `e_lname` varchar(20) DEFAULT NULL,
+  `sub_message` varchar(400) DEFAULT NULL,
+  `sub_date_time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Feedback`
+--
+
+INSERT INTO `Feedback` (`e_id`, `e_fname`, `e_lname`, `sub_message`, `sub_date_time`) VALUES
+(111, 'Atikan', 'Mangkala', 'Test message 1', '2023-10-24 15:08:10');
 
 -- --------------------------------------------------------
 
@@ -111,7 +136,9 @@ CREATE TABLE `Order` (
 
 INSERT INTO `Order` (`o_id`, `o_date`, `o_time`, `total_amount`, `e_id`, `payment_id`) VALUES
 ('3275482125', '2022-11-19', '18:25:50', '645.00', 111, 1),
+('3346352116', '2023-10-17', '22:18:11', '280.00', 111, 1),
 ('3666602697', '2022-11-20', '12:58:08', '300.00', 333, 1),
+('4023176440', '2023-10-10', '19:00:00', '110.00', 111, 1),
 ('4792278009', '2022-11-20', '23:09:10', '200.00', 111, 1),
 ('6363154731', '2022-11-19', '12:33:44', '250.00', 111, 1),
 ('7271765977', '2022-11-18', '18:43:32', '520.00', 111, 1),
@@ -183,7 +210,8 @@ INSERT INTO `Product` (`p_id`, `p_name`, `p_detail`, `p_price`) VALUES
 (208, 'Lemonade', NULL, '90.00'),
 (210, 'Passion Fruit', '', '70.00'),
 (211, 'Strawberry', NULL, '90.00'),
-(212, 'Milk', 'Low Fat', '20.00');
+(212, 'Milk', 'Low Fat', '20.00'),
+(12313123, 'Chock', '<h1>Hello</h1>', '500.00');
 
 --
 -- Indexes for dumped tables
