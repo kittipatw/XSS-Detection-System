@@ -7,7 +7,8 @@
 
     if (isset($_POST['feedback_sub'])) {
         $input = $_POST['feedback_message'];
-        
+        $input_preprocessed = preProcess($input);
+        $malicious = CheckRuleBased($input_preprocessed);
         // XSS DETECTION HERE
         // XSS DETECTION HERE
         // XSS DETECTION HERE
@@ -32,6 +33,7 @@
     }
     // IF detected
     else{
-        
+        WriteLog($input, "Stored");
+        header("Location: /malicious.php");
     }
 ?>

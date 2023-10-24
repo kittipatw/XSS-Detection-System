@@ -21,6 +21,7 @@
     }
     // IF detected
     else{
-        
+        WriteLog($input, "Reflected");
+        header("Location: /malicious.php");
     }
 ?>
