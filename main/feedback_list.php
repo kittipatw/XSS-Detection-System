@@ -10,6 +10,7 @@
   }
 ?>
 
+<?php require_once('../connect.php'); ?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,25 +116,29 @@
     </div>
   </nav>
 
-  <p style="text-align: center" class="fs-3 my-5">Help us improve 👋</p>
-  <p style="text-align: center" class="my-4">Please leave the feedback below.</p>
+  <p style="text-align: center" class="fs-3 my-5">Feedback List</p>
 
-  <div style="width: 40%" class="mx-auto border rounded p-4">
-    <div style="" class="row mb-3">
-      <label for="pid" class="form-label"><b>Full Name</b></label>
-      <input type="text" class="form-control" id="pid" name="pid" placeholder="<?= $_SESSION["fname"] . " " . $_SESSION["lname"] ?>" disabled />
-    </div>
-    <form action="../api/validate_feedback.php" method="POST">
-    <div style="" class="row mb-4">
-      <label for="comment" class="form-label"><b>What is your problem using our web application?</b></label>
-      <textarea class="form-control" id="comment" rows="5" name="feedback_message" maxlength="400" required></textarea>
-    </div>
-    <div style="" class="row">
-      <button style="width: 33%;" type="submit" class="mx-auto btn btn-primary" name="feedback_sub">
-            Submit Feedback
-      </button>
-    </form>
-    </div>
+
+  <div
+      style="height: 70%; width: 80%; overflow: scroll;"
+      class="mx-auto"
+    >
+  <?php
+    $q="select * from Feedback";
+    $result=$mysqli->query($q);
+    if(!$result){
+      echo "Select failed. Error: ".$mysqli->error ;
+      return false;
+    }
+    while($row=$result->fetch_array()){ ?>
+
+      <div style="width: 40%" class="mx-auto border rounded p-4 mb-3">
+        <h5><?=$row['e_fname']?> <?=$row['e_lname']?></h5>
+        <p><?=$row['sub_message']?></p>
+        <div style="color: lightgray; text-align: right;"><?=$row['sub_date_time']?></div>
+      </div>                       
+  <?php } ?>
+  
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
