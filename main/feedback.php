@@ -120,14 +120,16 @@ if (!isset($_SESSION["user"])) {
       <label for="pid" class="form-label"><b>Full Name</b></label>
       <input type="text" class="form-control" id="pid" name="pid" placeholder="<?= $_SESSION["fname"] . " " . $_SESSION["lname"] ?>" disabled />
     </div>
+    <form action="../api/validate_feedback.php" method="POST">
     <div style="" class="row mb-4">
       <label for="comment" class="form-label"><b>What is your problem using our web application?</b></label>
-      <textarea class="form-control" id="comment" rows="5"></textarea>
+      <textarea class="form-control" id="comment" rows="5" name="feedback_message" maxlength="400" required></textarea>
     </div>
     <div style="" class="row">
-      <button style="width: 33%;" type="submit" class="mx-auto btn btn-primary" name="feedback-sub">
+      <button style="width: 33%;" type="submit" class="mx-auto btn btn-primary" name="feedback_sub">
             Submit Feedback
       </button>
+    </form>
     </div>
   </div>
 
