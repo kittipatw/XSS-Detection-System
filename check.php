@@ -63,28 +63,28 @@ function CheckModel($input)
 {
     return TRUE;
 }
-function WriteLog($input)
+function WriteLog($input, $type)
 {
     $user_id = $_SESSION["e_id"];
-    $user_name = $_SESSION["fname"] . $_SESSION["lname"];
-    $user_role = $_SESSION["e_role"];
+    $user_name = $_SESSION["fname"] . " " . $_SESSION["lname"];
+    $user_role = $_SESSION["user"];
     $attempt_script = $input;
     $current_time = date('Y-m-d H:i:s');
     
     // Define log message
-    $log_message = "User ID: " . $user_id . " | "
-            . "Name: " . $user_name . " | "
+    $log_message = "User ID: " . $user_id . "\n"
+            . "Name: " . $user_name . "\n"
             . "Role: " . $user_role . "\n"
-            . "Executed Time: " . $current_time . " | "
-            . "XSS Script: " . $attempt_script . " | "
-            . "Type: Reflected XSS\n";
+            . "Executed Time: " . $current_time . "\n"
+            . "Type: " . $type . "\n"
+            . "XSS Script: \n" . $attempt_script;
 
     // Specify directory
-    $log_directory = 'logs/';
+    $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/';
     // Create a unique log file name using the user_id and timestamp
-    $log_file = $log_directory . 'log_' . $user_id . '_' . date('YmdHis') . '.txt';
+    $log_file = $log_directory . 'log_' . date('YmdHis') . '.log';
     // Open the log file for appending
-    $fp = fopen($log_file, 'a');
+    $fp = fopen($log_file, 'w');
     if ($fp) {
         fwrite($fp, $log_message);
         fclose($fp);
