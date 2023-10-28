@@ -2,6 +2,8 @@
 XSS detection system using a hybrid approach (rule-based and machine learning model)
 
 ## Dependencies
+- Django `pip3 install django`
+
 - PyTorch `pip3 install torch`
 
 - Transformers `pip3 install transformers`
