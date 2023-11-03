@@ -58,11 +58,27 @@ function CheckRuleBased($input)
 }
 
 
+function CheckModel($input) {
+    // URL to the Django application's xssmodel function
+    $url = 'http://localhost:8000/inference/xssmodel/?text=' . urlencode($input);
 
-function CheckModel($input)
-{
-    return TRUE;
+    // Use the PHP 'file_get_contents' function to perform the GET request
+    $response = file_get_contents($url);
+
+    // Decode the JSON response into a PHP array
+    $responseData = json_decode($response, true);
+
+    // Check if the response includes 'prediction' key
+    if (array_key_exists('prediction', $responseData)) {
+        // Return the prediction part of the response
+        return $responseData['prediction'];
+    } else {
+        // Return an error message or false if the prediction key doesn't exist
+        return "No prediction found in the response";
+    }
 }
+
+
 function WriteLog($input, $type)
 {
     $user_id = $_SESSION["e_id"];
