@@ -134,7 +134,7 @@
 
       <div style="width: 40%" class="mx-auto border rounded p-4 mb-3">
         <h5><?=$row['e_fname']?> <?=$row['e_lname']?></h5>
-        <p><?=$row['sub_message']?></p>
+        <p><?=htmlspecialchars($row['sub_message'])?></p>
         <div style="color: lightgray; text-align: right;"><?=$row['sub_date_time']?></div>
       </div>                       
   <?php } ?>

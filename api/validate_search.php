@@ -1,17 +1,33 @@
 <?php
     session_start();
     include('../check.php');
-	require_once('../connect.php');
-    
+    require_once('../connect.php');
+
     $malicious = FALSE;
 
-	if(isset($_GET['search_query'])){
+    if (isset($_GET['search_query'])) {
         $input = $_GET['search_query'];
-        // XSS DETECTION HERE
-        // XSS DETECTION HERE
-        // XSS DETECTION HERE
-        // XSS DETECTION HERE
-        // XSS DETECTION HERE
+        $input_preprocessed = preProcess($input);
+
+        // Exception: Skip validation steps if the input is just a plain text
+        if (checkPlainText($input_preprocessed)) {
+            $malicious = FALSE;
+        } else {
+            if (detectXSS_new($input_preprocessed)) {
+                $malicious = TRUE;
+            }
+            // if ($malicious != TRUE){
+            //     if(CheckModel($input_preprocessed)){
+            //         $malicious = TRUE;
+            //     }
+            // }
+
+            // XSS DETECTION HERE
+            // XSS DETECTION HERE
+            // XSS DETECTION HERE
+            // XSS DETECTION HERE
+            // XSS DETECTION HERE
+        }
     }
 
     // Return GET to order_searched for display
@@ -20,8 +36,9 @@
         header("Location: /main/order_searched.php?search_query=" . $search_query);
     }
     // IF detected
-    else{
+    else {
         // WriteLog($input, "Reflected");
         header("Location: /malicious.php");
+        // BlockUser();
     }
 ?>

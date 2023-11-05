@@ -140,7 +140,7 @@
     </form>
 
     <?php if($order_id == null) {
-      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Sorry, no results were found for: " . $o_id . "</p>";
+      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Sorry, no results were found for: " . htmlspecialchars($o_id) . "</p>";
     } 
     else{
       echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Found result for: " . $o_id . "</p>"; 
