@@ -8,7 +8,16 @@
       header("Location: /main/dashboard.php");
     }
   }
+
+  // Check if the search_query was set and if it has been validated.
+  if(isset($_GET['search_query']) && !isset($_SESSION['validated_search'])) {
+    // If not validated, redirect to validate_search.php
+    header("Location: ../api/validate_search.php?search_query=" . $_GET['search_query']);
+    // header("Location: ../api/validate_search.php?search_query=" . urlencode($_GET['search_query']));
+    exit;
+  }
 ?>
+
 
 <?php require_once('../connect.php'); ?> 
 <!DOCTYPE html>
@@ -140,7 +149,7 @@
     </form>
 
     <?php if($order_id == null) {
-      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Sorry, no results were found for: " . htmlspecialchars($o_id) . "</p>";
+      echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Sorry, no results were found for: " . $o_id . "</p>";
     } 
     else{
       echo "<p style=\"text-align: center\" class=\"fs-3 my-4\">Found result for: " . $o_id . "</p>"; 
@@ -228,3 +237,10 @@
     ></script>
   </body>
 </html>
+
+<?php
+  // At this point, the search has been processed and the results have been displayed.
+  if (isset($_SESSION['validated_search']) && $_SESSION['validated_search']) {
+    $_SESSION['validated_search'] = null; // Reset for the next search
+  }
+?>
