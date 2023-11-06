@@ -13,7 +13,7 @@
         if (checkPlainText($input_preprocessed)) {
             $malicious = FALSE;
         } else {
-            if (detectXSS_new($input_preprocessed)) {
+            if (CheckRuleBased($input_preprocessed)) {
                 $malicious = TRUE;
             }
             // if ($malicious != TRUE){
