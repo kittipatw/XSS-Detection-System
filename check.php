@@ -39,24 +39,56 @@ function preProcess($input)
     return $output;
 }
 
-function CheckRuleBased($input)
-{
-    // Array of Regular Expression of XSS patterns
+function CheckRuleBased($input) {
+    // A list of potentially harmful JavaScript event attributes commonly used in XSS attacks.
+    $dangerous_attributes = array(
+        'onload', 'onunload', 'onclick', 'onerror', 'onmouseover', 'onfocus', 'onblur', 
+        'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
+        'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
+        'ondrag', 'ondrop', 'onselect', 'onwheel', 'alert'
+    );
+
     $patterns = array(
-        // '/<[^>]+>.*?<\/[^>]+>/', // <XXX> and </XXX> i.e., <with_something_inside> and </with_something_inside>
-        '/<\s*script[^>]*>.*<\/\s*script\s*>/i', // <script>something</script>
-        '/<\s*iframe[^>]*>.*<\/\s*iframe\s*>/i', // <iframe>something</iframe>
-        '/<\s*a\s+href="javascript:[^>]*>/i', // <a href=something</a>
-        // ADD more pattern
+        // Detect <script> tags with content that's not just letters, numbers, or whitespace.
+        // Example: <script>someCode();</script>
+        '#<script[^>]*?>(.*[^a-zA-Z0-9\s].*)</script>#',
+        
+        // Detect <img> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
+        // Example: <img src="javascript:alert(1)">
+        '#<img[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
+        
+        // Detect <iframe>, <object>, <embed>, and <applet> tags with a 'javascript:' or 'data:' pseudo-protocol or dangerous attributes.
+        // Example: <iframe src="javascript:alert(1)">
+        '#<(iframe|object|embed|applet)[^>]*?(javascript:|data:|'.implode('|', $dangerous_attributes).')#',
+        
+        // Detect <meta>, <link>, <base>, <form>, <input>, and <button> tags with dangerous attributes.
+        // Example: <input onmouseover="alert(1)">
+        '#<(meta|link|base|form|input|button)[^>]*?('.implode('|', $dangerous_attributes).')#',
+        
+        // Detect <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
+        // Example: <svg onload="alert(1)">
+        '#<svg[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
+        
+        // Detect 'data:' URIs followed by 'base64' which can contain encoded data for XSS.
+        // Example: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=
+        '#data:[^"\']*?;base64[^"\']*#',
+        
+        // Detect 'javascript:' pseudo-protocol which can execute JS.
+        // Example: javascript:alert(1)
+        '#javascript:[^"\']*?#',
+        
+        // Detect 'vbscript:' pseudo-protocol which can execute VBScript (mostly for older versions of IE).
+        // Example: vbscript:msgbox("Hello")
+        '#vbscript:[^"\']*?#'
     );
 
     foreach ($patterns as $pattern) {
         if (preg_match($pattern, $input)) {
-            return TRUE; // XSS attempt
+            return TRUE;
         }
     }
+    return FALSE;
 }
-
 
 function CheckModel($input) {
     $url = 'http://localhost:8000/inference/';
@@ -170,60 +202,6 @@ function detectXSS($input) {
 
 
 
-function detectXSS_new($input) {
-    // A list of potentially harmful JavaScript event attributes commonly used in XSS attacks.
-    $dangerous_attributes = array(
-        'onload', 'onunload', 'onclick', 'onerror', 'onmouseover', 'onfocus', 'onblur', 
-        'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
-        'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
-        'ondrag', 'ondrop', 'onselect', 'onwheel', 'alert'
-    );
-
-    $patterns = array(
-        // Detect <script> tags with content that's not just letters, numbers, or whitespace.
-        // Example: <script>someCode();</script>
-        '#<script[^>]*?>(.*[^a-zA-Z0-9\s].*)</script>#',
-        
-        // Detect <img> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
-        // Example: <img src="javascript:alert(1)">
-        '#<img[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
-        
-        // Detect <iframe>, <object>, <embed>, and <applet> tags with a 'javascript:' or 'data:' pseudo-protocol or dangerous attributes.
-        // Example: <iframe src="javascript:alert(1)">
-        '#<(iframe|object|embed|applet)[^>]*?(javascript:|data:|'.implode('|', $dangerous_attributes).')#',
-        
-        // Detect <meta>, <link>, <base>, <form>, <input>, and <button> tags with dangerous attributes.
-        // Example: <input onmouseover="alert(1)">
-        '#<(meta|link|base|form|input|button)[^>]*?('.implode('|', $dangerous_attributes).')#',
-        
-        // Detect <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
-        // Example: <svg onload="alert(1)">
-        '#<svg[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
-        
-        // Detect 'data:' URIs followed by 'base64' which can contain encoded data for XSS.
-        // Example: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=
-        '#data:[^"\']*?;base64[^"\']*#',
-        
-        // Detect 'javascript:' pseudo-protocol which can execute JS.
-        // Example: javascript:alert(1)
-        '#javascript:[^"\']*?#',
-        
-        // Detect 'vbscript:' pseudo-protocol which can execute VBScript (mostly for older versions of IE).
-        // Example: vbscript:msgbox("Hello")
-        '#vbscript:[^"\']*?#'
-    );
-
-    foreach ($patterns as $pattern) {
-        if (preg_match($pattern, $input)) {
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
-
-
-
 /*
 CREATE .htaccess file under development directory with the following content:
 
@@ -262,6 +240,26 @@ function checkPlainText($input) {
 
 
 // Archive ----------------------------------------------------------
+
+function CheckRuleBased_old($input)
+{
+    // Array of Regular Expression of XSS patterns
+    $patterns = array(
+        // '/<[^>]+>.*?<\/[^>]+>/', // <XXX> and </XXX> i.e., <with_something_inside> and </with_something_inside>
+        '/<\s*script[^>]*>.*<\/\s*script\s*>/i', // <script>something</script>
+        '/<\s*iframe[^>]*>.*<\/\s*iframe\s*>/i', // <iframe>something</iframe>
+        '/<\s*a\s+href="javascript:[^>]*>/i', // <a href=something</a>
+        // ADD more pattern
+    );
+
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $input)) {
+            return TRUE; // XSS attempt
+        }
+    }
+}
+
+
 function CheckModel_GET($input) {
     // $url = 'http://localhost:8000/inference/?text="' . urlencode('"' . $input . '"');    
     // $url = 'http://localhost:8000/inference/?text=' . urlencode($input); 

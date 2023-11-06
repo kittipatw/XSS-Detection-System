@@ -14,7 +14,7 @@
             $malicious = FALSE;
             echo "<script>console.log("."'Passed Plain-Text'".");</script>";
         } else {
-            if (detectXSS_new($input_preprocessed)) {
+            if (CheckRuleBased($input_preprocessed)) {
                 $malicious = TRUE;
                 echo "<script>console.log("."'Detect @ Rule-Based'".");</script>";
             }
