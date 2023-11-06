@@ -33,6 +33,7 @@
     // Return GET to order_searched for display
     if (!empty($_GET['search_query']) && $malicious == FALSE) {
         $search_query = urlencode($_GET['search_query']);
+        $_SESSION['validated_search'] = TRUE;
         header("Location: /main/order_searched.php?search_query=" . $search_query);
     }
     // IF detected
