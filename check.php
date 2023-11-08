@@ -71,6 +71,7 @@ function CheckRuleBased($input) {
         
         // Detect 'data:' URIs followed by 'base64' which can contain encoded data for XSS.
         // Example: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=
+        // seem to be not working
         '#data:[^"\']*?;base64[^"\']*#',
         
         // Detect 'javascript:' pseudo-protocol which can execute JS.
@@ -79,7 +80,11 @@ function CheckRuleBased($input) {
         
         // Detect 'vbscript:' pseudo-protocol which can execute VBScript (mostly for older versions of IE).
         // Example: vbscript:msgbox("Hello")
-        '#vbscript:[^"\']*?#'
+        '#vbscript:[^"\']*?#',
+
+        // Detect <a>, <textarea>, <select>, and <div> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
+        '#<(a|textarea|select|div)[^>]*?(' . implode('|', $dangerous_attributes) . ')#'
+
     );
 
     foreach ($patterns as $pattern) {
@@ -223,12 +228,8 @@ function Send_Notification($admin, $user_info, $input_str)
 
 
 function checkPlainText($input) {
-    // check for < , >
-    $containsLessThan = strpos($input, '<') !== FALSE;
-    $containsGreaterThan = strpos($input, '>') !== FALSE;
-
-    // if only one of them is found (+multiple times) OR not both
-    if ($containsLessThan xor $containsGreaterThan || (!$containsLessThan && !$containsGreaterThan)){
+    $pattern = '/^[a-z0-9]*$/';
+    if(preg_match($pattern, $input)){
         return TRUE;
     }
     else{
@@ -285,6 +286,21 @@ function CheckModel_GET($input) {
     } else {
         // Return an error message or FALSE if the prediction key doesn't exist
         return "No prediction found in the response";
+    }
+}
+
+
+function checkPlainText_old($input) {
+    // check for < , >
+    $containsLessThan = strpos($input, '<') !== FALSE;
+    $containsGreaterThan = strpos($input, '>') !== FALSE;
+
+    // if only one of them is found (+multiple times) OR not both
+    if ($containsLessThan xor $containsGreaterThan || (!$containsLessThan && !$containsGreaterThan)){
+        return TRUE;
+    }
+    else{
+        return FALSE;
     }
 }
 ?>

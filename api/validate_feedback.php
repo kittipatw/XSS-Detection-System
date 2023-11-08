@@ -44,11 +44,11 @@
                 echo "INSERT failed. Error: " . $mysqli->error;
                 return FALSE;
             }
-            // header("Location: /main/feedback.php");
+            header("Location: /main/feedback_list.php");
     }
     // IF detected
     else{
         // WriteLog($input, "Stored");
-        // header("Location: /malicious.php");
+        header("Location: /malicious.php");
         // BlockUser();
     }
