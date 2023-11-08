@@ -87,6 +87,11 @@ function CheckRuleBased($input) {
 
     );
 
+    // Include harmful attribute regex
+    foreach ($dangerous_attributes as $attr) {
+        $patterns[] = '#'.$attr.'\s*=\s*(["\']?).*?\1#siU';
+    }
+
     foreach ($patterns as $pattern) {
         if (preg_match($pattern, $input)) {
             return TRUE;
@@ -192,7 +197,8 @@ function detectXSS($input) {
     );
 
     foreach ($dangerous_attributes as $attr) {
-        $patterns[] = '#'.$attr.'\s*=\s*["\'][^"\']*?["\']#si';
+        // $patterns[] = '#'.$attr.'\s*=\s*["\'][^"\']*?["\']#si';
+        $patterns[] = '#'.$attr.'\s*=\s*(["\']?).*?\1#siU';
     }
 
     // Check if any of the patterns match the input.
