@@ -5,6 +5,8 @@
 
     $malicious = FALSE;
 
+    // XSS DETECTION HERE
+    // XSS DETECTION HERE
     if (isset($_POST['feedback_sub'])) {
         $input = $_POST['feedback_message'];
         $input_preprocessed = preProcess($input);
@@ -12,23 +14,20 @@
         // Exception: Skip validation steps if the input is just a plain text
         if (checkPlainText($input_preprocessed)) {
             $malicious = FALSE;
-            echo "<script>console.log("."'Passed Plain-Text'".");</script>";
+            echo "<script>console.log("."'Passed: Plain-Text'".");</script>";
         } else {
             if (CheckRuleBased($input_preprocessed)) {
                 $malicious = TRUE;
-                echo "<script>console.log("."'Detect @ Rule-Based'".");</script>";
+                $_SESSION['detected_by'] = 'Rule-Based';
+                echo "<script>console.log("."'Detected: By Rule-Based'".");</script>";
             }
             if ($malicious != TRUE){
                 if(CheckModel($input_preprocessed)){
                     $malicious = TRUE;
-                    echo "<script>console.log("."'Detect @ Model'".");</script>";
+                    $_SESSION['detected_by'] = 'Model';
+                    echo "<script>console.log("."'Detected: By Model'".");</script>";
                 }
             }
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
         }
     }
 
@@ -47,8 +46,8 @@
             header("Location: /main/feedback_list.php");
     }
     // IF detected
-    else{
-        // WriteLog($input, "Stored");
+    else {
+        // WriteLog($input, "Reflected");
         header("Location: /malicious.php");
         // BlockUser();
     }
