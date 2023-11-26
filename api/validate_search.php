@@ -5,6 +5,8 @@
 
     $malicious = FALSE;
 
+    // XSS DETECTION HERE
+    // XSS DETECTION HERE
     if (isset($_GET['search_query'])) {
         $input = $_GET['search_query'];
         $input_preprocessed = preProcess($input);
@@ -12,21 +14,20 @@
         // Exception: Skip validation steps if the input is just a plain text
         if (checkPlainText($input_preprocessed)) {
             $malicious = FALSE;
+            echo "<script>console.log("."'Passed: Plain-Text'".");</script>";
         } else {
             if (CheckRuleBased($input_preprocessed)) {
                 $malicious = TRUE;
+                $_SESSION['detected_by'] = 'Rule-Based';
+                echo "<script>console.log("."'Detected: By Rule-Based'".");</script>";
             }
-            // if ($malicious != TRUE){
-            //     if(CheckModel($input_preprocessed)){
-            //         $malicious = TRUE;
-            //     }
-            // }
-
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
-            // XSS DETECTION HERE
+            if ($malicious != TRUE){
+                if(CheckModel($input_preprocessed)){
+                    $malicious = TRUE;
+                    $_SESSION['detected_by'] = 'Model';
+                    echo "<script>console.log("."'Detected: By Model'".");</script>";
+                }
+            }
         }
     }
 
