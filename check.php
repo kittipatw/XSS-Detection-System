@@ -54,28 +54,19 @@ function CheckRuleBased($input) {
         // Example: <script>someCode();</script>
         '#<script[^>]*>.*[^a-z0-9]</script>#',
         
-        // Detect <img> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
+        // Detect <img>, <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
         // Example: <img src="javascript:alert(1)">
-        '#<img[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
+        '#<(img|svg)[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
         
-        // Detect <iframe>, <object>, <embed>, and <applet> tags with a 'javascript:' or 'data:' pseudo-protocol or dangerous attributes.
-        // Example: <iframe src="javascript:alert(1)">
-        '#<(iframe|object|embed|applet)[^>]*(javascript:|data:|'.implode('|', $dangerous_attributes).')#',
+        '#<(iframe|object|embed|applet)[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
         
-        // Detect <meta>, <link>, <base>, <form>, <input>, and <button> tags with dangerous attributes.
-        // Example: <input onmouseover="alert(1)">
         '#<(meta|link|base|form|input|button)[^>]*('.implode('|', $dangerous_attributes).')#',
         
-        // Detect <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
-        // Example: <svg onload="alert(1)">
-        '#<svg[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
-        
+        '#<(a|textarea|select|div)[^>]*('.implode('|', $dangerous_attributes).')#',
+
         // Detect 'javascript:' pseudo-protocol which can execute JS.
         // Example: javascript:alert(1)
-        '#javascript:[^"\']*#',
-
-        // Detect <a>, <textarea>, <select>, and <div> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
-        '#<(a|textarea|select|div)[^>]*('.implode('|', $dangerous_attributes).')#'
+        '#javascript:[^"\']*#'
 
     );
 
