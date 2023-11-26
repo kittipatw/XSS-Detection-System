@@ -40,56 +40,48 @@ function preProcess($input)
 }
 
 function CheckRuleBased($input) {
-    // A list of potentially harmful JavaScript event attributes commonly used in XSS attacks.
+    // Potential harmful JavaScript event attributes commonly used in XSS attacks.
     $dangerous_attributes = array(
         'onload', 'onunload', 'onclick', 'onerror', 'onmouseover', 'onfocus', 'onblur', 
         'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
         'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
-        'ondrag', 'ondrop', 'onselect', 'onwheel', 'alert'
+        'ondrag', 'ondrop', 'onselect', 'onwheel', 
+        'alert', 'src', 'href'
     );
 
     $patterns = array(
         // Detect <script> tags with content that's not just letters, numbers, or whitespace.
         // Example: <script>someCode();</script>
-        '#<script[^>]*?>(.*[^a-zA-Z0-9\s].*)</script>#',
+        '#<script[^>]*>.*[^a-z0-9]</script>#',
         
         // Detect <img> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
         // Example: <img src="javascript:alert(1)">
-        '#<img[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
+        '#<img[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
         
         // Detect <iframe>, <object>, <embed>, and <applet> tags with a 'javascript:' or 'data:' pseudo-protocol or dangerous attributes.
         // Example: <iframe src="javascript:alert(1)">
-        '#<(iframe|object|embed|applet)[^>]*?(javascript:|data:|'.implode('|', $dangerous_attributes).')#',
+        '#<(iframe|object|embed|applet)[^>]*(javascript:|data:|'.implode('|', $dangerous_attributes).')#',
         
         // Detect <meta>, <link>, <base>, <form>, <input>, and <button> tags with dangerous attributes.
         // Example: <input onmouseover="alert(1)">
-        '#<(meta|link|base|form|input|button)[^>]*?('.implode('|', $dangerous_attributes).')#',
+        '#<(meta|link|base|form|input|button)[^>]*('.implode('|', $dangerous_attributes).')#',
         
         // Detect <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
         // Example: <svg onload="alert(1)">
-        '#<svg[^>]*?(javascript:|'.implode('|', $dangerous_attributes).')#',
-        
-        // Detect 'data:' URIs followed by 'base64' which can contain encoded data for XSS.
-        // Example: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=
-        // seem to be not working
-        '#data:[^"\']*?;base64[^"\']*#',
+        '#<svg[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
         
         // Detect 'javascript:' pseudo-protocol which can execute JS.
         // Example: javascript:alert(1)
-        '#javascript:[^"\']*?#',
-        
-        // Detect 'vbscript:' pseudo-protocol which can execute VBScript (mostly for older versions of IE).
-        // Example: vbscript:msgbox("Hello")
-        '#vbscript:[^"\']*?#',
+        '#javascript:[^"\']*#',
 
         // Detect <a>, <textarea>, <select>, and <div> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
-        '#<(a|textarea|select|div)[^>]*?(' . implode('|', $dangerous_attributes) . ')#'
+        '#<(a|textarea|select|div)[^>]*('.implode('|', $dangerous_attributes).')#'
 
     );
 
     // Include harmful attribute regex
     foreach ($dangerous_attributes as $attr) {
-        $patterns[] = '#'.$attr.'\s*=\s*(["\']?).*?\1#siU';
+        $patterns[] = '#'.$attr.'=".*#';
     }
 
     foreach ($patterns as $pattern) {
