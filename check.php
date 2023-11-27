@@ -118,7 +118,7 @@ function CheckModel($input) {
 
 
 
-function WriteLog($input, $type)
+function WriteLog($input, $type, $detect_by)
 {
     $user_id = $_SESSION["e_id"];
     $user_name = $_SESSION["fname"] . " " . $_SESSION["lname"];
@@ -132,11 +132,12 @@ function WriteLog($input, $type)
             . "Role: " . $user_role . "\n"
             . "Executed Time: " . $current_time . "\n"
             . "Type: " . $type . "\n"
+            . "Detected By: " . $detect_by . "\n"
             . "XSS Script: \n" . $attempt_script;
 
     // Specify directory
-    // $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
-    $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
+    $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
+    // $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
     
     // Create a unique log file name using the user_id and timestamp
     $log_file = $log_directory . 'log_' . date('YmdHis') . '.log';

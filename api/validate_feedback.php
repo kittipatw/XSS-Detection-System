@@ -47,7 +47,7 @@
     }
     // IF detected
     else {
-        WriteLog($input, "Stored");
+        WriteLog($input, "Stored", $_SESSION['detected_by']);
         header("Location: /malicious.php");
         // BlockUser();
     }
