@@ -2,28 +2,28 @@
 session_start();
 
 // Check if the submitted request is GET or POST
-if ($_SERVER['REQUEST_METHOD'] == 'GET' || 'POST') {
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        // Acquire input from GET
-        $input = $_GET['input'];
-    } else {
-        // Acquire input from POST
-        $input = $_POST['input'];
-    }
+// if ($_SERVER['REQUEST_METHOD'] == 'GET' || 'POST') {
+//     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+//         // Acquire input from GET
+//         $input = $_GET['input'];
+//     } else {
+//         // Acquire input from POST
+//         $input = $_POST['input'];
+//     }
 
-    if (PreProcess($input_str)) {
-        if (CheckRuleBased($input_str)) {
-            if (CheckModel($input_str)) {
-            }
-            WriteLog($user_info, $input_str);
-            Send_Notification($admin, $user_info, $input_str);
-        }
-        WriteLog($user_info, $input_str);
-        Send_Notification($admin, $user_info, $input_str);
-    }
-    WriteLog($user_info, $input_str);
-    Send_Notification($admin, $user_info, $input_str);
-}
+//     if (PreProcess($input_str)) {
+//         if (CheckRuleBased($input_str)) {
+//             if (CheckModel($input_str)) {
+//             }
+//             WriteLog($user_info, $input_str);
+//             Send_Notification($admin, $user_info, $input_str);
+//         }
+//         WriteLog($user_info, $input_str);
+//         Send_Notification($admin, $user_info, $input_str);
+//     }
+//     WriteLog($user_info, $input_str);
+//     Send_Notification($admin, $user_info, $input_str);
+// }
 
 
 // $malicious = FALSE;
