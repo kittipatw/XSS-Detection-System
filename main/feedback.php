@@ -115,6 +115,12 @@
     </div>
   </nav>
 
+  <a href="/main/feedback_list.php" style="text-decoration: none;">
+  <button style="width: 9%; position: fixed; right: 0; bottom: 0;" type="submit" class="m-4 btn btn-outline-secondary" name="feedback_list">
+            Show Feedback List
+  </button>
+  </a>
+
   <p style="text-align: center" class="fs-3 my-5">Help us improve 👋</p>
   <p style="text-align: center" class="my-4">Please leave the feedback below.</p>
 
