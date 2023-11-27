@@ -135,16 +135,17 @@ function WriteLog($input, $type)
             . "XSS Script: \n" . $attempt_script;
 
     // Specify directory
-    $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/';
+    // $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
+    $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
+    
     // Create a unique log file name using the user_id and timestamp
     $log_file = $log_directory . 'log_' . date('YmdHis') . '.log';
-    // Open the log file for appending
+
     $fp = fopen($log_file, 'w');
     if ($fp) {
         fwrite($fp, $log_message);
         fclose($fp);
     } else {
-        // Handle errors if the log file couldn't be opened
         echo "Error: Unable to write to the log file.";
     }
 }
@@ -174,9 +175,7 @@ function detectXSS($input) {
         '#<input[^>]*?>#si',                          // malicious input fields/tags
         '#<button[^>]*?>#si',                         // malicious buttons
         '#<svg[^>]*?>.*?</svg>#si',                   // SVGs can contain embedded JS
-        '#data:[^"\']*?;base64[^"\']*#si',            // data URIs can be used for XSS
         '#javascript:[^"\']*?#si',                    // JS pseudo-protocol
-        '#vbscript:[^"\']*?#si'                       // VBScript pseudo-protocol for IE
     );
 
     foreach ($dangerous_attributes as $attr) {
@@ -204,7 +203,9 @@ Allow from all
 
 */ 
 function BlockUser(){
-    $htaccess_path = "/Users/earth/Desktop/xss/XSS-Detection-System/.htaccess"; // Update the path
+    // Update the path
+    // $htaccess_path = "/Users/earth/Desktop/xss/XSS-Detection-System/.htaccess"; // earth_local
+    $htaccess_path = "/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/.htaccess"; // golf_local
     $block_string = "\nDeny from " . $_SERVER['REMOTE_ADDR'];
     file_put_contents($htaccess_path, $block_string, FILE_APPEND);
 }
