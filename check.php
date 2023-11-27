@@ -56,13 +56,13 @@ function CheckRuleBased($input) {
         
         // Detect <img>, <svg> tags with a 'javascript:' pseudo-protocol or dangerous attributes.
         // Example: <img src="javascript:alert(1)">
-        '#<(img|svg)[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
+        '#<(img|svg)[^>]*(javascript:|' . implode('=|', $dangerous_attributes) . '=)#',
         
-        '#<(iframe|object|embed|applet)[^>]*(javascript:|'.implode('|', $dangerous_attributes).')#',
+        '#<(iframe|object|embed|applet)[^>]*(javascript:|' . implode('=|', $dangerous_attributes) . '=)#',
         
-        '#<(meta|link|base|form|input|button)[^>]*('.implode('|', $dangerous_attributes).')#',
+        '#<(meta|link|base|form|input|button)[^>]*(' . implode('=|', $dangerous_attributes) . '=)#',
         
-        '#<(a|textarea|select|div)[^>]*('.implode('|', $dangerous_attributes).')#',
+        '#<(a|textarea|select|div)[^>]*(' . implode('=|', $dangerous_attributes) . '=)#',
 
         // Detect 'javascript:' pseudo-protocol which can execute JS.
         // Example: javascript:alert(1)
