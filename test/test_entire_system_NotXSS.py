@@ -35,11 +35,12 @@ try:
             input_value = row[0]
 
             search_input = driver.find_element(By.ID, "search")
+            search_input.clear()  # Clear any previous value
             search_input.send_keys(input_value)
             search_input.send_keys(Keys.RETURN)
 
             # Delay to load
-            # time.sleep(0.5)
+            # time.sleep(0.2)
 
             # Step 6: Check redirection
             current_url = driver.current_url
@@ -51,7 +52,7 @@ try:
                 session_info = driver.find_element(By.ID, "sessionInfo").get_attribute("value")
                 print(f"Detected by: {session_info}")
                 failed_count += 1 
-                failed_inputs.append(input_value)
+                failed_inputs.append((input_value, session_info)) 
             total_count += 1
             print("----------------------------------")
 
@@ -64,7 +65,7 @@ finally:
 
 print(f"Total PASSED: {passed_count}/{total_count}")
 print(f"Total FAILED: {failed_count}/{total_count}")
-print("Failed Inputs:")
-for index, failed_input in enumerate(failed_inputs):
-    print(f"Input {index+1}: {failed_input}")
+print("Failed Inputs (False Positive):")
+for index, (failed_input, session_info) in enumerate(failed_inputs):
+    print(f"Input {index+1}: {failed_input}, Detected by: {session_info}")
 

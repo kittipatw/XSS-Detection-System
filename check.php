@@ -46,7 +46,7 @@ function CheckRuleBased($input) {
         'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
         'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
         'ondrag', 'ondrop', 'onselect', 'onwheel', 
-        'alert', 'src', 'href'
+        'alert'
     );
 
     $patterns = array(
@@ -227,6 +227,7 @@ function checkPlainText($input) {
         return FALSE;
     }
 }
+
 
 
 
