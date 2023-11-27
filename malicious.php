@@ -113,7 +113,8 @@
 
         <?php
           session_start();
-          echo "<div>Detected by <b>" . $_SESSION['detected_by'] . "</b></div>";
+          echo "Warning: Detected by " . $_SESSION['detected_by'];
+          echo "<input id='sessionInfo' style='display: none;' value=".$_SESSION['detected_by'].">"; // FOR Selenium
           $_SESSION['detected_by'] = null;
         ?>
       </div>
