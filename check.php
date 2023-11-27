@@ -136,8 +136,8 @@ function WriteLog($input, $type, $detect_by)
             . "XSS Script: \n" . $attempt_script;
 
     // Specify directory
-    $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
-    // $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
+    // $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
+    $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
     
     // Create a unique log file name using the user_id and timestamp
     $log_file = $log_directory . 'log_' . date('YmdHis') . '.log';
