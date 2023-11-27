@@ -67,6 +67,5 @@ print(f"Total PASSED: {passed_count}/{total_count}")
 print(f"Total FAILED: {failed_count}/{total_count}")
 print("Failed Inputs (False Positive):")
 for index, (failed_input, session_info) in enumerate(failed_inputs):
-    if(session_info == "Rule-Based"):
-        print(f"Input {index+1}: {failed_input}, Detected by: {session_info}")
+    print(f"Input {index+1}: {failed_input}, Detected by: {session_info}")
 
