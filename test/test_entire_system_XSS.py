@@ -65,6 +65,6 @@ finally:
 
 print(f"Total PASSED: {passed_count}/{total_count}")
 print(f"Total FAILED: {failed_count}/{total_count}")
-print("Failed Inputs:")
+print("Failed Inputs (False Negative):")
 for index, failed_input in enumerate(failed_inputs):
     print(f"Input {index+1}: {failed_input}")
