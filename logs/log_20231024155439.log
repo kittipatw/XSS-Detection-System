@@ -1,7 +1,0 @@
-User ID: 222
-Name: Kittipat Wattanasuwan
-Role: Admin
-Executed Time: 2023-10-24 15:54:39
-Type: Stored
-XSS Script: 
-<script>alert("Hacked")</script>
