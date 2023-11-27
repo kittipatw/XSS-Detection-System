@@ -231,6 +231,7 @@ function checkPlainText($input) {
 
 
 
+
 // Archive ----------------------------------------------------------
 
 function CheckRuleBased_old($input)
