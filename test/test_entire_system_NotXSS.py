@@ -21,7 +21,7 @@ try:
     password_input = driver.find_element(By.NAME, "password")
     password_input.send_keys("admin")
 
-    submit_button = driver.find_element(By.TAG_NAME, 'button')  # Adjust if the submit button has a different tag or identifier
+    submit_button = driver.find_element(By.TAG_NAME, 'button')
     submit_button.click()
 
     # Step 4: Go to the order page
