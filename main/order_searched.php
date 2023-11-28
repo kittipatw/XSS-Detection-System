@@ -124,9 +124,10 @@
 
     <?php
     $o_id = $_GET['search_query'];
+    $order_id = null;
     # $test = preProcess($o_id);
     # echo "<script>console.log('".$o_id."');</script>";
-
+  
     // XSS DETECTION HERE
     // XSS DETECTION HERE
     // XSS DETECTION HERE

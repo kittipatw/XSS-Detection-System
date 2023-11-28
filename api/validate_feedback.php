@@ -32,18 +32,42 @@
     }
 
 
+    // // Insert message into database
+    // if (!empty($_POST['feedback_message']) && $malicious == FALSE) {
+    //     $eid = $_SESSION["e_id"];
+    //     $fname = $_SESSION["fname"];
+    //     $lname = $_SESSION["lname"];
+    //     $q1 = "INSERT INTO Feedback(e_id, e_fname, e_lname, sub_message, sub_date_time) VALUES ('$eid', '$fname', '$lname', '$input', NOW());";
+    //         $result1 = $mysqli->query($q1);
+    //         if (!$result1) {
+    //             echo "INSERT failed. Error: " . $mysqli->error;
+    //             return FALSE;
+    //         }
+    //         header("Location: /main/feedback_list.php");
+    // }
+    // // IF detected
+    // else {
+    //     WriteLog($input, "Stored", $_SESSION['detected_by']);
+    //     header("Location: /malicious.php");
+    //     // BlockUser();
+    // }
+
     // Insert message into database
     if (!empty($_POST['feedback_message']) && $malicious == FALSE) {
         $eid = $_SESSION["e_id"];
         $fname = $_SESSION["fname"];
         $lname = $_SESSION["lname"];
-        $q1 = "INSERT INTO Feedback(e_id, e_fname, e_lname, sub_message, sub_date_time) VALUES ('$eid', '$fname', '$lname', '$input', NOW());";
-            $result1 = $mysqli->query($q1);
-            if (!$result1) {
-                echo "INSERT failed. Error: " . $mysqli->error;
-                return FALSE;
-            }
+
+        $stmt = $mysqli->prepare("INSERT INTO Feedback(e_id, e_fname, e_lname, sub_message, sub_date_time) VALUES (?, ?, ?, ?, NOW())");
+
+        $stmt->bind_param("ssss", $eid, $fname, $lname, $input);
+
+        if ($stmt->execute()) {
             header("Location: /main/feedback_list.php");
+        } else {
+            echo "INSERT failed. Error: " . $stmt->error;
+            return FALSE;
+        }
     }
     // IF detected
     else {
