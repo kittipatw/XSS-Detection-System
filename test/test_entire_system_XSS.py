@@ -21,13 +21,14 @@ try:
     password_input = driver.find_element(By.NAME, "password")
     password_input.send_keys("admin")
 
-    submit_button = driver.find_element(By.TAG_NAME, 'button')  # Adjust if the submit button has a different tag or identifier
+    submit_button = driver.find_element(By.TAG_NAME, 'button')
     submit_button.click()
 
     # Step 4: Go to the order page
     driver.get("http://localhost:8888/main/order.php")
 
-    # Step 5: Fill in the search input
+    # Step 5: PortSwigger Cross-Site Scripting (XSS) Cheat Sheet - 2023
+    # Note Traning Dataset: PortSwigger Cross-Site Scripting (XSS) Cheat Sheet - 2019
     with open('./XSS_test_port-swagger-scripts.csv', newline='') as csvfile:
         csvreader = csv.reader(csvfile)
         next(csvreader) # skip header
