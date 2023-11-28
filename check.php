@@ -26,12 +26,10 @@ session_start();
 // }
 
 
-// $malicious = FALSE;
-
 function preProcess($input)
 {
     // Remove spaces, tabs, and line breaks
-    $output = str_replace(array(' ', "\t", "\n", "\r"), '', $input);
+    $output = str_replace(array(' ', "\t", "\n"), '', $input);
     // Convert to lowercase
     $output = strtolower($output);
     // Replace ' with "
@@ -49,6 +47,7 @@ function CheckRuleBased($input) {
         'alert'
     );
 
+    // Common XSS tags regex
     $patterns = array(
         // Detect <script> tags with content that's not just letters, numbers, or whitespace.
         // Example: <script>someCode();</script>
@@ -63,11 +62,9 @@ function CheckRuleBased($input) {
         '#<(meta|link|base|form|input|button)[^>]*(' . implode('=|', $dangerous_attributes) . '=)#',
         
         '#<(a|textarea|select|div)[^>]*(' . implode('=|', $dangerous_attributes) . '=)#',
-
-
     );
 
-    // Include harmful attribute regex
+    // Append harmful attribute ONLY to regex
     foreach ($dangerous_attributes as $attr) {
         $patterns[] = '#'.$attr.'=".*#';
     }
@@ -93,14 +90,13 @@ function CheckModel($input) {
     );
     $context = stream_context_create($options);
 
-    // Use the PHP 'file_get_contents' function to perform the POST request
     $response = file_get_contents($url, FALSE, $context);
 
     if ($response === FALSE) {
         echo "Request failed";
     }
 
-    // Decode the JSON response into a PHP array
+    // Decode JSON
     $responseData = json_decode($response, TRUE);
     echo "<script>console.log(" . json_encode($responseData) . ");</script>";
 
@@ -132,7 +128,7 @@ function WriteLog($input, $type, $detect_by)
             . "Detected By: " . $detect_by . "\n"
             . "XSS Script: \n" . $attempt_script;
 
-    // Specify directory
+    // Specify path of the logs folder
     // $log_directory = '/Users/earth/Desktop/xss/XSS-Detection-System/logs/'; // earth_local
     $log_directory = '/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/logs/'; // golf_local
     
@@ -148,51 +144,6 @@ function WriteLog($input, $type, $detect_by)
     }
 }
 
-
-function detectXSS($input) {
-    // A list of potentially harmful attributes commonly used in XSS attacks.
-    $dangerous_attributes = array(
-        'onload', 'onunload', 'onclick', 'onerror', 'onmouseover', 'onfocus', 'onblur', 
-        'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
-        'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
-        'ondrag', 'ondrop', 'onselect', 'onwheel', 'alert'
-    );
-
-    // Tags and protocols that can potentially be used in XSS attacks.
-    $patterns = array(
-        '#<script[^>]*?>.*?</script>#si',             // Scripts
-        '#<img[^>]*?src\s*=\s*["\']?[^"\'>]*?["\']#si',  // Malicious images with potential JS payloads
-        '#<iframe[^>]*?>.*?</iframe>#si',             // iframes can be used to embed malicious content
-        '#<object[^>]*?>.*?</object>#si',             // objects can embed malicious content
-        '#<embed[^>]*?>.*?</embed>#si',               // embed tags can embed malicious content
-        '#<applet[^>]*?>.*?</applet>#si',             // applets can embed malicious Java
-        '#<meta[^>]*?>#si',                           // meta tags can be used for charset-based attacks
-        '#<link[^>]*?>#si',                           // potentially malicious stylesheet links
-        '#<base[^>]*?>#si',                           // base tags can modify base URI
-        '#<form[^>]*?>#si',                           // malicious forms
-        '#<input[^>]*?>#si',                          // malicious input fields/tags
-        '#<button[^>]*?>#si',                         // malicious buttons
-        '#<svg[^>]*?>.*?</svg>#si',                   // SVGs can contain embedded JS
-        '#javascript:[^"\']*?#si',                    // JS pseudo-protocol
-    );
-
-    foreach ($dangerous_attributes as $attr) {
-        // $patterns[] = '#'.$attr.'\s*=\s*["\'][^"\']*?["\']#si';
-        $patterns[] = '#'.$attr.'\s*=\s*(["\']?).*?\1#siU';
-    }
-
-    // Check if any of the patterns match the input.
-    foreach ($patterns as $pattern) {
-        if (preg_match($pattern, $input)) {
-            return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
-
-
 /*
 CREATE .htaccess file under development directory with the following content:
 
@@ -201,7 +152,7 @@ Allow from all
 
 */ 
 function BlockUser(){
-    // Update the path
+    // Update the path of .htaccess file
     // $htaccess_path = "/Users/earth/Desktop/xss/XSS-Detection-System/.htaccess"; // earth_local
     $htaccess_path = "/Users/kittipatw/Documents/SIIT/2023-1/CSS453/Project Files/Website/XSS-Detection-System/.htaccess"; // golf_local
     $block_string = "\nDeny from " . $_SERVER['REMOTE_ADDR'];
@@ -247,6 +198,47 @@ function CheckRuleBased_old($input)
             return TRUE; // XSS attempt
         }
     }
+}
+
+function CheckRuleBased_old_2($input) {
+    // A list of potentially harmful attributes commonly used in XSS attacks.
+    $dangerous_attributes = array(
+        'onload', 'onunload', 'onclick', 'onerror', 'onmouseover', 'onfocus', 'onblur', 
+        'onchange', 'onsubmit', 'onkeydown', 'onkeypress', 'onkeyup',
+        'onmouseenter', 'onmouseleave', 'onmousedown', 'onmouseup', 'onmousemove',
+        'ondrag', 'ondrop', 'onselect', 'onwheel', 'alert'
+    );
+
+    // Tags and protocols that can potentially be used in XSS attacks.
+    $patterns = array(
+        '#<script[^>]*?>.*?</script>#si',             
+        '#<img[^>]*?src\s*=\s*["\']?[^"\'>]*?["\']#si',  
+        '#<iframe[^>]*?>.*?</iframe>#si',             
+        '#<object[^>]*?>.*?</object>#si',             
+        '#<embed[^>]*?>.*?</embed>#si',               
+        '#<applet[^>]*?>.*?</applet>#si',             
+        '#<meta[^>]*?>#si',                           
+        '#<link[^>]*?>#si',                           
+        '#<base[^>]*?>#si',                           
+        '#<form[^>]*?>#si',                           
+        '#<input[^>]*?>#si',                          
+        '#<button[^>]*?>#si',                         
+        '#<svg[^>]*?>.*?</svg>#si',                   
+        '#javascript:[^"\']*?#si',                    
+    );
+
+    foreach ($dangerous_attributes as $attr) {
+        // $patterns[] = '#'.$attr.'\s*=\s*["\'][^"\']*?["\']#si';
+        $patterns[] = '#'.$attr.'\s*=\s*(["\']?).*?\1#siU';
+    }
+
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $input)) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 
