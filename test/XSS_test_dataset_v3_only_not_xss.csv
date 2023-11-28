@@ -83,7 +83,6 @@ div style=width:1px;filter:glow onfilterchange=javascript:alert(1)>x,0
 <li>Download our brochure</li>,0
 <figure>Get in touch with our experts</figure>,0
 <label>Contact us for details</label>,0
-<figure>Find your nearest store</figure>,0
 <section>See our customer testimonials</section>,0
 <table>Read our latest blog post</table>,0
 <input>Read our latest blog post</input>,0
@@ -95,7 +94,6 @@ div style=width:1px;filter:glow onfilterchange=javascript:alert(1)>x,0
 <ul>Explore our new collection</ul>,0
 <span>Discover our services</span>,0
 <section>Read our latest blog post</section>,0
-<input>Click here for more information</input>,0
 <h2>Shop our latest deals</h2>,0
 <ol>Learn more about our team</ol>,0
 <ol>Access your account settings</ol>,0

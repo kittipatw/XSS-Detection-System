@@ -1,8 +1,0 @@
-User ID: 111
-Name: Atikan Mangkala
-Role: Admin
-Executed Time: 2023-11-27 13:08:02
-Type: Stored
-Detected By: Rule-Based
-XSS Script: 
-<script>alert("Hacked")</script>
